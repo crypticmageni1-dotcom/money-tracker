@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color"
+          content="#080a0f">
+
+    <title>M-Tracker | Business</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #080a0f;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            padding-bottom: 90px;
+        }
+
+        button,
+        input,
+        select {
+            font-family: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .app {
+            width: 100%;
+            max-width: 650px;
+            margin: auto;
+        }
+
+        /* HEADER */
+
+        .top-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px;
+            border-bottom: 1px solid #252832;
+            background: #0c0f15;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-logo {
+            width: 45px;
+            height: 45px;
+            border-radius: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #ff173d, #8b001d);
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .brand-info h1 {
+            font-size: 17px;
+        }
+
+        .brand-info p {
+            margin-top: 4px;
+            color: #858b99;
+            font-size: 10px;
+        }
+
+        .back-button {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #171a22;
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        /* MAIN */
+
+        .main-content {
+            padding: 18px;
+        }
+
+        .welcome {
+            margin-bottom: 18px;
+        }
+
+        .welcome small {
+            color: #ff3657;
+            font-size: 9px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+        }
+
+        .welcome h2 {
+            margin-top: 8px;
+            font-size: 25px;
+        }
+
+        .welcome p {
+            margin-top: 7px;
+            color: #858b99;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        /* CARDS */
+
+        .card {
+            margin-bottom: 16px;
+            padding: 17px;
+            border: 1px solid #252832;
+            border-radius: 16px;
+            background: #10131a;
+        }
+
+        .card-title {
+            margin-bottom: 14px;
+        }
+
+        .card-title h3 {
+            font-size: 14px;
+        }
+
+        .card-title p {
+            margin-top: 5px;
+            color: #858b99;
+            font-size: 10px;
+        }
+
+        /* BUSINESS PROFILE */
+
+        .business-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .business-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #241018;
+            font-size: 23px;
+        }
+
+        .business-details {
+            flex: 1;
+        }
+
+        .business-details h3 {
+            font-size: 14px;
+        }
+
+        .business-details p {
+            margin-top: 4px;
+            color: #858b99;
+            font-size: 10px;
+        }
+
+        .edit-button {
+            border: 1px solid #3a2027;
+            border-radius: 9px;
+            padding: 8px 11px;
+            background: #180d11;
+            color: #ff4663;
+            font-size: 10px;
+        }
+
+        /* FORM */
+
+        .editor {
+            display: none;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #252832;
+        }
+
+        .form-group {
+            margin-bottom: 13px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            color: #b5bac5;
+            font-size: 10px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            outline: none;
+            border: 1px solid #292d37;
+            border-radius: 10px;
+            background: #080a0f;
+            color: white;
+            font-size: 11px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #ff294d;
+        }
+
+        .save-button {
+            width: 100%;
+            padding: 12px;
+            border: 0;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #ff1740, #a40022);
+            color: white;
+            font-weight: bold;
+            font-size: 11px;
+        }
+
+        /* STATS */
+
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .stat {
+            padding: 14px;
+            border: 1px solid #252832;
+            border-radius: 13px;
+            background: #0c0f15;
+        }
+
+        .stat-icon {
+            font-size: 19px;
+            margin-bottom: 10px;
+        }
+
+        .stat span {
+            display: block;
+            color: #858b99;
+            font-size: 9px;
+        }
+
+        .stat strong {
+            display: block;
+            margin-top: 6px;
+            font-size: 14px;
+        }
+
+        /* PROFIT */
+
+        .profit-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 11px 0;
+            color: #aeb3be;
+            font-size: 10px;
+        }
+
+        .profit-row strong {
+            color: white;
+        }
+
+        .divider {
+            height: 1px;
+            background: #252832;
+        }
+
+        .profit-total {
+            font-size: 12px;
+        }
+
+        /* TOOLS */
+
+        .tools {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 9px;
+        }
+
+        .tool {
+            min-height: 105px;
+            padding: 10px 5px;
+            border: 1px solid #252832;
+            border-radius: 13px;
+            background: #0c0f15;
+            color: white;
+            transition: 0.2s;
+        }
+
+        .tool:hover {
+            border-color: #ff294d;
+            transform: translateY(-2px);
+        }
+
+        .tool-icon {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 22px;
+        }
+
+        .tool strong {
+            display: block;
+            font-size: 10px;
+        }
+
+        .tool small {
+            display: block;
+            margin-top: 5px;
+            color: #858b99;
+            font-size: 8px;
+        }
+
+        /* IDEAS */
+
+        .idea {
+            display: flex;
+            gap: 12px;
+            padding: 13px;
+            margin-bottom: 9px;
+            border: 1px solid #252832;
+            border-radius: 13px;
+            background: #0c0f15;
+        }
+
+        .idea:last-child {
+            margin-bottom: 0;
+        }
+
+        .idea-icon {
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 11px;
+            background: #241018;
+            font-size: 18px;
+        }
+
+        .idea h4 {
+            font-size: 11px;
+        }
+
+        .idea p {
+            margin-top: 5px;
+            color: #858b99;
+            font-size: 9px;
+            line-height: 1.5;
+        }
+
+        /* KNOWLEDGE */
+
+        .knowledge {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .knowledge button {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #252832;
+            border-radius: 11px;
+            background: #0c0f15;
+            color: white;
+            text-align: left;
+        }
+
+        .knowledge-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9px;
+            background: #241018;
+        }
+
+        .knowledge-text {
+            flex: 1;
+        }
+
+        .knowledge-text strong {
+            display: block;
+            font-size: 10px;
+        }
+
+        .knowledge-text small {
+            display: block;
+            margin-top: 4px;
+            color: #858b99;
+            font-size: 8px;
+        }
+
+        /* MESSAGE */
+
+        .message {
+            min-height: 30px;
+            margin-bottom: 15px;
+            padding: 9px;
+            border-radius: 9px;
+            color: #ff6a82;
+            text-align: center;
+            font-size: 10px;
+        }
+
+        /* NAVIGATION */
+
+        .bottom-navigation {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            z-index: 100;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 650px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            padding: 9px 6px;
+            border-top: 1px solid #252832;
+            background: #0c0f15;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #858b99;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .nav-item small {
+            font-size: 8px;
+        }
+
+        .nav-item.active {
+            color: #ff3657;
+        }
+
+        /* SMALL PHONES */
+
+        @media (max-width: 380px) {
+
+            .tools {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .brand-info h1 {
+                font-size: 15px;
+            }
+
+        }
+select{
+    width:100%;
+    padding:12px;
+    outline:none;
+    background:#080a0f;
+    border:1px solid #30343e;
+    border-radius:10px;
+    color:white;
+    font-size:11px;
+}
+
+select:focus{
+    border-color:#ff3657;
+}
+
+select option{
+    background:#080a0f;
+    color:white;
+}select {
+    width: 100%;
+    padding: 12px;
+    outline: none;
+    background: #080a0f;
+    border: 1px solid #30343e;
+    border-radius: 10px;
+    color: white;
+    font-size: 11px;
+}
+
+select:focus {
+    border-color: #ff3657;
+}
+
+select option {
+    background: #080a0f;
+    color: white;
+}
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+    <!-- HEADER -->
+
+    <header class="top-header">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                M
+            </div>
+
+            <div class="brand-info">
+
+                <h1>
+                    Business Center
+                </h1>
+
+                <p>
+                    Manage and grow your business
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <a href="index.html"
+           class="back-button">
+
+            ←
+
+        </a>
+
+    </header>
+
+
+    <main class="main-content">
+
+
+        <!-- INTRO -->
+
+        <section class="welcome">
+
+            <small>
+                BUSINESS MANAGEMENT
+            </small>
+
+            <h2 id="pageBusinessName">
+                My Business
+            </h2>
+
+            <p>
+                Track revenue, expenses, profits,
+                sales and business progress.
+            </p>
+
+        </section>
+
+
+        <!-- BUSINESS PROFILE -->
+
+        <section class="card">
+
+            <div class="business-profile">
+
+                <div class="business-icon">
+                    💼
+                </div>
+
+                <div class="business-details">
+
+                    <h3 id="businessName">
+                        My Business
+                    </h3>
+
+                    <p id="businessType">
+                        Small Business
+                    </p>
+
+                </div>
+
+                <button
+                    class="edit-button"
+                    id="editButton"
+                    type="button">
+
+                    Edit
+
+                </button>
+
+            </div>
+
+
+            <div
+                class="editor"
+                id="editor">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Business Name
+                    </label>
+
+                    <input
+                        id="businessNameInput"
+                        type="text"
+                        placeholder="Enter business name">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Business Type
+                    </label>
+
+                    <select id="businessTypeInput">
+
+                        <option>
+                            Small Business
+                        </option>
+
+                        <option>
+                            Retail
+                        </option>
+
+                        <option>
+                            Agriculture
+                        </option>
+
+                        <option>
+                            Technology
+                        </option>
+
+                        <option>
+                            Education
+                        </option>
+
+                        <option>
+                            Services
+                        </option>
+
+                        <option>
+                            Manufacturing
+                        </option>
+
+                        <option>
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    class="save-button"
+                    id="saveButton"
+                    type="button">
+
+                    Save Business
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- FINANCIAL OVERVIEW -->
+
+        <section class="card">
+
+            <div class="card-title">
+
+                <h3>
+                    Financial Overview
+                </h3>
+
+                <p>
+                    Your business performance
+                </p>
+
+            </div>
+
+
+            <div class="stats">
+
+
+                <div class="stat">
+
+                    <div class="stat-icon">
+                        💰
+                    </div>
+
+                    <span>
+                        Revenue
+                    </span>
+
+                    <strong id="revenue">
+                        KSh 0
+                    </strong>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div class="stat-icon">
+                        📉
+                    </div>
+
+                    <span>
+                        Expenses
+                    </span>
+
+                    <strong id="expenses">
+                        KSh 0
+                    </strong>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div class="stat-icon">
+                        📈
+                    </div>
+
+                    <span>
+                        Profit
+                    </span>
+
+                    <strong id="profit">
+                        KSh 0
+                    </strong>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div class="stat-icon">
+                        🧾
+                    </div>
+
+                    <span>
+                        Transactions
+                    </span>
+
+                    <strong id="transactionCount">
+                        0
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- PROFIT AND LOSS -->
+
+        <section class="card">
+
+            <div class="card-title">
+
+                <h3>
+                    Profit & Loss
+                </h3>
+
+                <p>
+                    Business financial result
+                </p>
+
+            </div>
+
+
+            <div class="profit-row">
+
+                <span>
+                    Total Income
+                </span>
+
+                <strong id="income">
+                    KSh 0
+                </strong>
+
+            </div>
+
+
+            <div class="profit-row">
+
+                <span>
+                    Total Expenses
+                </span>
+
+                <strong id="expense">
+                    KSh 0
+                </strong>
+
+            </div>
+
+
+            <div class="divider"></div>
+
+
+            <div class="profit-row">
+
+    <span>
+        Total Income
+    </span>
+
+    <strong id="plIncome">
+        KSh 0
+    </strong>
+
+</div>
+
+
+<div class="profit-row">
+
+    <span>
+        Total Expenses
+    </span>
+
+    <strong id="plExpenses">
+        KSh 0
+    </strong>
+
+</div>
+
+
+<div class="divider"></div>
+
+
+<div class="profit-row profit-total">
+
+    <span>
+        Net Profit / Loss
+    </span>
+
+    <strong id="netProfit">
+        KSh 0
+    </strong>
+
+</div>
+
+        </section>
+
+
+        <!-- TOOLS -->
+
+        <section class="card">
+
+            <div class="card-title">
+
+                <h3>
+                    Business Tools
+                </h3>
+
+                <p>
+                    Manage different areas of your business
+                </p>
+
+            </div>
+
+
+            <div class="tools">
+
+
+                <button
+                    class="tool"
+                    type="button"
+                    data-tool="Sales">
+
+                    <span class="tool-icon">
+                        🛒
+                    </span>
+
+                    <strong>
+                        Sales
+                    </strong>
+
+                    <small>
+                        Track sales
+                    </small>
+
+                </button>
+
+
+                <a
+    href="inventory.html"
+    class="tool">
+
+    <span class="tool-icon">📦</span>
+
+    <strong>Inventory</strong>
+
+    <small>Manage products</small>
+
+</a>
+
+
+                <button
+                    class="tool"
+                    type="button"
+                    data-tool="Customers">
+
+                    <span class="tool-icon">
+                        👥
+                    </span>
+
+                    <strong>
+                        Customers
+                    </strong>
+
+                    <small>
+                        Customer records
+                    </small>
+
+                </button>
+
+
+                <button
+                    class="tool"
+                    type="button"
+                    data-tool="Employees">
+
+                    <span class="tool-icon">
+                        🧑‍💼
+                    </span>
+
+                    <strong>
+                        Employees
+                    </strong>
+
+                    <small>
+                        Manage staff
+                    </small>
+
+                </button>
+
+
+                <button
+                    class="tool"
+                    type="button"
+                    data-tool="Invoices">
+
+                    <span class="tool-icon">
+                        🧾
+                    </span>
+
+                    <strong>
+                        Invoices
+                    </strong>
+
+                    <small>
+                        Create invoices
+                    </small>
+
+                </button>
+
+
+                <button
+                    class="tool"
+                    type="button"
+                    data-tool="Reports">
+
+                    <span class="tool-icon">
+                        📊
+                    </span>
+
+                    <strong>
+                        Reports
+                    </strong>
+
+                    <small>
+                        Financial reports
+                    </small>
+
+                </button>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- BUSINESS IDEAS -->
+
+        <section class="card">
+
+            <div class="card-title">
+
+                <h3>
+                    Business Ideas
+                </h3>
+
+                <p>
+                    Discover possible opportunities
+                </p>
+
+            </div>
+
+
+            <div class="idea">
+
+                <div class="idea-icon">
+                    🌱
+                </div>
+
+                <div>
+<script src="business.js"></script>

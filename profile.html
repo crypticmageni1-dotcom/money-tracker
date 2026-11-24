@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color"
+          content="#090b10">
+
+    <title>M-Tracker Profile</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #090b10;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            padding-bottom: 40px;
+        }
+
+        .app {
+            width: 100%;
+            max-width: 650px;
+            margin: auto;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 17px;
+            background: #0e1118;
+            border-bottom: 1px solid #252932;
+        }
+
+        .back {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 11px;
+            background: #191c24;
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        .logo {
+            width: 43px;
+            height: 43px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #ff1744, #9d001f);
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        header h1 {
+            font-size: 17px;
+        }
+
+        header p {
+            margin-top: 4px;
+            color: #858b98;
+            font-size: 9px;
+        }
+
+        main {
+            padding: 18px;
+        }
+
+        .intro {
+            margin-bottom: 18px;
+        }
+
+        .intro small {
+            color: #ff3658;
+            font-size: 9px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .intro h2 {
+            margin-top: 8px;
+            font-size: 26px;
+        }
+
+        .intro p {
+            margin-top: 7px;
+            color: #858b98;
+            font-size: 10px;
+            line-height: 1.5;
+        }
+
+        .card {
+            margin-bottom: 15px;
+            padding: 18px;
+            border: 1px solid #252932;
+            border-radius: 17px;
+            background: #11141b;
+        }
+
+        /* PROFILE PHOTO */
+
+        .photo-area {
+            text-align: center;
+        }
+
+        .photo {
+            width: 115px;
+            height: 115px;
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 3px solid #4b1523;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff1744, #650017);
+            color: white;
+            font-size: 38px;
+            font-weight: bold;
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-name {
+            color: #858b98;
+            font-size: 9px;
+        }
+
+        .photo-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 13px;
+        }
+
+        .small-button {
+            padding: 9px 12px;
+            border: 1px solid #30343e;
+            border-radius: 9px;
+            background: #191c24;
+            color: white;
+            font-size: 8px;
+            cursor: pointer;
+        }
+
+        .small-button.red {
+            color: #ff5574;
+            border-color: #52202d;
+        }
+
+        /* FORM */
+
+        .field {
+            margin-bottom: 14px;
+        }
+
+        .field:last-child {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            color: #b5bac5;
+            font-size: 9px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #30343e;
+            border-radius: 10px;
+            outline: none;
+            background: #090b10;
+            color: white;
+            font-size: 10px;
+        }
+
+        input:focus {
+            border-color: #ff294d;
+        }
+
+        .password-box {
+            position: relative;
+        }
+
+        .password-box input {
+            padding-right: 45px;
+        }
+
+        .eye {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            border: none;
+            border-radius: 8px;
+            background: #191c24;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* PASSWORD STRENGTH */
+
+        .strength {
+            margin-top: 8px;
+        }
+
+        .strength-bar {
+            width: 100%;
+            height: 5px;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #252932;
+        }
+
+        .strength-fill {
+            width: 0%;
+            height: 100%;
+            transition: 0.2s;
+        }
+
+        .strength-text {
+            display: block;
+            margin-top: 5px;
+            color: #858b98;
+            font-size: 8px;
+        }
+
+        /* BUTTONS */
+
+        .save {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 11px;
+            background: linear-gradient(135deg, #ff1744, #a30022);
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .delete {
+            width: 100%;
+            margin-top: 9px;
+            padding: 12px;
+            border: 1px solid #632331;
+            border-radius: 11px;
+            background: #1b0c11;
+            color: #ff5574;
+            font-size: 9px;
+            cursor: pointer;
+        }
+
+        /* ACCOUNT TYPE */
+
+        .account-type {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .type-option {
+            padding: 13px 8px;
+            border: 1px solid #30343e;
+            border-radius: 11px;
+            background: #0b0e14;
+            color: #858b98;
+            text-align: center;
+            cursor: pointer;
+            font-size: 9px;
+        }
+
+        .type-option.active {
+            border-color: #ff294d;
+            background: #210b12;
+            color: #ffffff;
+        }
+
+        /* SECURITY */
+
+        .security-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #252932;
+        }
+
+        .security-item:last-child {
+            border-bottom: none;
+        }
+
+        .security-info strong {
+            display: block;
+            font-size: 9px;
+        }
+
+        .security-info small {
+            display: block;
+            margin-top: 4px;
+            color: #858b98;
+            font-size: 8px;
+        }
+
+        .status {
+            color: #ff5574;
+            font-size: 8px;
+        }
+
+        .message {
+            min-height: 25px;
+            margin-top: 8px;
+            text-align: center;
+            color: #ff5574;
+            font-size: 9px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+    <header>
+
+        <a href="index.html" class="back">
+            ←
+        </a>
+
+        <div class="logo">
+            M
+        </div>
+
+        <div>
+
+            <h1>
+                M-Tracker
+            </h1>
+
+            <p>
+                Personal profile
+            </p>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+
+        <section class="intro">
+
+            <small>
+                ACCOUNT CENTER
+            </small>
+
+            <h2>
+                My Profile
+            </h2>
+
+            <p>
+                Manage your identity, account information
+                and security.
+            </p>
+
+        </section>
+
+
+        <!-- PROFILE PHOTO -->
+
+        <section class="card photo-area">
+
+            <div
+                class="photo"
+                id="photoPreview">
+
+                M
+
+            </div>
+
+
+            <div
+                class="photo-name"
+                id="photoName">
+
+                Add a profile picture
+
+            </div>
+
+
+            <div class="photo-buttons">
+
+                <button
+                    class="small-button"
+                    id="choosePhoto"
+                    type="button">
+
+                    📷 CHANGE PHOTO
+
+                </button>
+
+
+                <button
+                    class="small-button red"
+                    id="removePhoto"
+                    type="button">
+
+                    REMOVE
+
+                </button>
+
+            </div>
+
+
+            <input
+                type="file"
+                id="photoInput"
+                class="hidden"
+                accept="image/*">
+
+        </section>
+
+
+        <!-- PERSONAL INFORMATION -->
+
+        <section class="card">
+
+            <div class="field">
+
+                <label for="fullName">
+                    FULL NAME
+                </label>
+
+                <input
+                    type="text"
+                    id="fullName"
+                    placeholder="Enter your full name">
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="email">
+                    EMAIL ADDRESS
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="example@email.com">
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="phone">
+                    PHONE NUMBER
+                </label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    placeholder="+254...">
+
+            </div>
+
+        </section>
+
+
+        <!-- ACCOUNT TYPE -->
+
+        <section class="card">
+
+            <div class="field">
+
+                <label>
+                    ACCOUNT TYPE
+                </label>
+
+
+                <div class="account-type">
+
+                    <div
+                        class="type-option active"
+                        data-type="personal">
+
+                        👤 Personal
+
+                    </div>
+
+
+                    <div
+                        class="type-option"
+                        data-type="business">
+
+                        🏢 Business
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PASSWORD -->
+
+        <section class="card">
+
+            <div class="field">
+
+                <label for="password">
+                    PASSWORD
+                </label>
+
+
+                <div class="password-box">
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Create a password">
+
+                    <button
+                        class="eye"
+                        id="passwordEye"
+                        type="button">
+
+                        👁️
+
+                    </button>
+
+                </div>
+
+
+                <div class="strength">
+
+                    <div class="strength-bar">
+
+                        <div
+                            class="strength-fill"
+                            id="strengthFill">
+                        </div>
+
+                    </div>
+
+
+                    <span
+                        class="strength-text"
+                        id="strengthText">
+
+                        Password not set
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="confirmPassword">
+                    CONFIRM PASSWORD
+                </label>
+
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Repeat your password">
+
+            </div>
+
+        </section>
+
+
+        <!-- SECURITY -->
+
+        <section class="card">
+
+            <div class="security-item">
+
+                <div class="security-info">
+
+                    <strong>
+                        🔐 Profile Password
+                    </strong>
+
+                    <small>
+                        Protect your M-Tracker profile.
+                    </small>
+
+                </div>
+
+                <span
+                    class="status"
+                    id="passwordStatus">
+
+                    Not set
+
+                </span>
+
+            </div>
+
+
+            <div class="security-item">
+
+                <div class="security-info">
+
+                    <strong>
+                        🛡️ Local Protection
+                    </strong>
+
+                    <small>
+                        Profile data is stored on this device
+                        in the current prototype.
+                    </small>
+
+                </div>
+
+                <span class="status">
+                    ACTIVE
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- SAVE -->
+
+        <section class="card">
+
+            <button
+                class="save"
+                id="saveProfile"
+                type="button">
+
+                💾 SAVE PROFILE
+
+            </button>
+
+
+            <button
+                class="delete"
+                id="deleteProfile"
+                type="button">
+
+                🗑️ DELETE PROFILE DATA
+
+            </button>
+
+        </section>
+
+
+        <div
+            class="message"
+            id="message">
+        </div>
+
+
+    </main>
+
+</div>
+
+
+<script src="profile.js"></script>
+
+</body>
+
+</html>

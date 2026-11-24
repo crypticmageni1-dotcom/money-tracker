@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#090b10">
+
+    <title>M-Tracker - Settings</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #090b10;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            padding-bottom: 40px;
+        }
+
+        .app {
+            width: 100%;
+            max-width: 650px;
+            margin: auto;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px;
+            background: #0e1118;
+            border-bottom: 1px solid #252932;
+        }
+
+        .back {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 11px;
+            background: #191c24;
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        .logo {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #ff1744, #9d001f);
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        header h1 {
+            font-size: 17px;
+        }
+
+        header p {
+            margin-top: 4px;
+            color: #858b98;
+            font-size: 9px;
+        }
+
+        main {
+            padding: 18px;
+        }
+
+        .intro {
+            margin-bottom: 18px;
+        }
+
+        .intro small {
+            color: #ff3658;
+            font-size: 9px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .intro h2 {
+            margin-top: 8px;
+            font-size: 26px;
+        }
+
+        .intro p {
+            margin-top: 6px;
+            color: #858b98;
+            font-size: 10px;
+            line-height: 1.5;
+        }
+
+        .section {
+            margin-bottom: 15px;
+            padding: 17px;
+            border: 1px solid #252932;
+            border-radius: 17px;
+            background: #11141b;
+        }
+
+        .section-title {
+            margin-bottom: 15px;
+        }
+
+        .section-title h3 {
+            font-size: 14px;
+        }
+
+        .section-title p {
+            margin-top: 5px;
+            color: #858b98;
+            font-size: 9px;
+        }
+
+        .setting {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 13px 0;
+            border-bottom: 1px solid #252932;
+        }
+
+        .setting:last-child {
+            border-bottom: none;
+        }
+
+        .setting-info {
+            flex: 1;
+        }
+
+        .setting-info strong {
+            display: block;
+            font-size: 10px;
+        }
+
+        .setting-info small {
+            display: block;
+            margin-top: 5px;
+            color: #858b98;
+            font-size: 8px;
+            line-height: 1.4;
+        }
+
+        select,
+        input {
+            width: 150px;
+            padding: 10px;
+            border: 1px solid #30343e;
+            border-radius: 9px;
+            outline: none;
+            background: #090b10;
+            color: white;
+            font-size: 9px;
+        }
+
+        select:focus,
+        input:focus {
+            border-color: #ff294d;
+        }
+
+        .toggle {
+            position: relative;
+            width: 45px;
+            height: 25px;
+            flex-shrink: 0;
+        }
+
+        .toggle input {
+            display: none;
+        }
+
+        .slider {
+            position: absolute;
+            inset: 0;
+            border-radius: 30px;
+            background: #30343e;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .slider:before {
+            content: "";
+            position: absolute;
+            width: 19px;
+            height: 19px;
+            left: 3px;
+            top: 3px;
+            border-radius: 50%;
+            background: white;
+            transition: 0.2s;
+        }
+
+        .toggle input:checked + .slider {
+            background: #d51036;
+        }
+
+        .toggle input:checked + .slider:before {
+            transform: translateX(20px);
+        }
+
+        .button {
+            width: 100%;
+            margin-top: 9px;
+            padding: 12px;
+            border: 1px solid #30343e;
+            border-radius: 10px;
+            background: #191c24;
+            color: white;
+            font-size: 10px;
+            cursor: pointer;
+        }
+
+        .button.primary {
+            border: none;
+            background: linear-gradient(135deg, #ff1744, #a30022);
+        }
+
+        .button.danger {
+            border-color: #652331;
+            background: #1c0c11;
+            color: #ff5874;
+        }
+
+        .pin-area {
+            display: none;
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: 10px;
+            background: #0b0e14;
+        }
+
+        .pin-area.show {
+            display: block;
+        }
+
+        .pin-area input {
+            width: 100%;
+        }
+
+        .message {
+            min-height: 25px;
+            margin-top: 5px;
+            color: #ff5575;
+            text-align: center;
+            font-size: 9px;
+        }
+
+        .info-box {
+            padding: 12px;
+            border: 1px solid #30252a;
+            border-radius: 10px;
+            background: #160d11;
+            color: #aeb3be;
+            font-size: 8px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 400px) {
+
+            .setting {
+                align-items: flex-start;
+            }
+
+            select,
+            input {
+                width: 120px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<div class="app">
+
+    <header>
+
+        <a href="index.html" class="back">
+            ←
+        </a>
+
+        <div class="logo">
+            M
+        </div>
+
+        <div>
+            <h1>M-Tracker</h1>
+            <p>Application settings</p>
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <section class="intro">
+
+            <small>
+                CONTROL CENTER
+            </small>
+
+            <h2>
+                Settings
+            </h2>
+
+            <p>
+                Customize how M-Tracker manages and displays
+                your financial information.
+            </p>
+
+        </section>
+
+
+        <!-- MONEY -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <h3>
+                    💰 Money & Currency
+                </h3>
+
+                <p>
+                    Choose how financial values are displayed.
+                </p>
+
+            </div>
+
+
+            <div class="setting">
+
+                <div class="setting-info">
+
+                    <strong>
+                        Currency
+                    </strong>
+
+                    <small>
+                        Select your main currency.
+                    </small>
+
+                </div>
+
+
+                <select id="currency">
+
+                    <option value="KES">
+                        KSh — Kenyan Shilling
+                    </option>
+
+                    <option value="USD">
+                        $ — US Dollar
+                    </option>
+
+                    <option value="EUR">
+                        € — Euro
+                    </option>
+
+                    <option value="GBP">
+                        £ — British Pound
+                    </option>
+
+                    <option value="NGN">
+                        ₦ — Nigerian Naira
+                    </option>
+
+                    <option value="GHS">
+                        GH₵ — Ghanaian Cedi
+                    </option>
+
+                    <option value="TZS">
+                        TSh — Tanzanian Shilling
+                    </option>
+
+                    <option value="UGX">
+                        USh — Ugandan Shilling
+                    </option>
+
+                    <option value="ZAR">
+                        R — South African Rand
+                    </option>
+
+                    <option value="INR">
+                        ₹ — Indian Rupee
+                    </option>
+
+                    <option value="JPY">
+                        ¥ — Japanese Yen
+                    </option>
+
+                    <option value="CNY">
+                        ¥ — Chinese Yuan
+                    </option>
+
+                    <option value="AED">
+                        د.إ — UAE Dirham
+                    </option>
+
+                </select>
+
+            </div>
+
+        </section>
+
+
+        <!-- PRIVACY -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <h3>
+                    🔐 Privacy & Security
+                </h3>
+
+                <p>
+                    Protect sensitive financial information.
+                </p>
+
+            </div>
+
+
+            <div class="setting">
+
+                <div class="setting-info">
+
+                    <strong>
+                        Hide balance by default
+                    </strong>
+
+                    <small>
+                        Hide your balance when opening the dashboard.
+                    </small>
+
+                </div>
+
+
+                <label class="toggle">
+
+                    <input
+                        type="checkbox"
+                        id="hideBalance">
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+
+            <div class="setting">
+
+                <div class="setting-info">
+
+                    <strong>
+                        Enable PIN protection
+                    </strong>
+
+                    <small>
+                        Require a PIN before accessing protected areas.
+                    </small>
+
+                </div>
+
+
+                <label class="toggle">
+
+                    <input
+                        type="checkbox"
+                        id="pinEnabled">
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+
+            <div
+                class="pin-area"
+                id="pinArea">
+
+                <input
+                    type="password"
+                    id="pin"
+                    maxlength="6"
+                    inputmode="numeric"
+                    placeholder="Create 4–6 digit PIN">
+
+                <button
+                    class="button primary"
+                    id="savePin"
+                    type="button">
+
+                    SAVE PIN
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- DATA -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <h3>
+                    🗃️ Data Management
+                </h3>
+
+                <p>
+                    Back up or remove your M-Tracker records.
+                </p>
+
+            </div>
+
+
+            <button
+                class="button"
+                id="exportData"
+                type="button">
+
+                📥 EXPORT MY DATA
+
+            </button>
+
+
+            <button
+                class="button"
+                id="importButton"
+                type="button">
+
+                📤 IMPORT DATA
+
+            </button>
+
+
+            <input
+                type="file"
+                id="importFile"
+                accept=".json"
+                style="display:none;">
+
+
+            <button
+                class="button danger"
+                id="clearData"
+                type="button">
+
+                🗑️ CLEAR FINANCIAL DATA
+
+            </button>
+
+        </section>
+
+
+        <!-- INFORMATION -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <h3>
+                    ℹ️ About M-Tracker
+                </h3>
+
+            </div>
+
+
+            <div class="info-box">
+
+                M-Tracker is designed to act as your
+                personal financial secretary — helping you
+                record, organize and understand your money,
+                business and financial documents.
+
+                <br><br>
+
+                Version 1.0
+
+            </div>
+
+        </section>
+
+
+        <div
+            class="message"
+            id="message">
+        </div>
+
+
+    </main>
+
+</div>
+
+
+<script src="settings.js"></script>
+
+</body>
+
+</html>

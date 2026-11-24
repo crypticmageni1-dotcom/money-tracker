@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#090b10">
+
+    <title>M-Tracker - Transactions</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #090b10;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            padding-bottom: 90px;
+        }
+
+        .app {
+            width: 100%;
+            max-width: 650px;
+            margin: auto;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px;
+            background: #0e1118;
+            border-bottom: 1px solid #252932;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 13px;
+            background: linear-gradient(135deg, #ff1744, #9d001f);
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .brand h1 {
+            font-size: 17px;
+        }
+
+        .brand p {
+            margin-top: 4px;
+            color: #858b98;
+            font-size: 9px;
+        }
+
+        .back {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 11px;
+            background: #191c24;
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        main {
+            padding: 18px;
+        }
+
+        .intro {
+            margin-bottom: 18px;
+        }
+
+        .intro small {
+            color: #ff3658;
+            font-size: 9px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .intro h2 {
+            margin-top: 8px;
+            font-size: 26px;
+        }
+
+        .intro p {
+            margin-top: 6px;
+            color: #858b98;
+            font-size: 10px;
+            line-height: 1.5;
+        }
+
+        .card {
+            margin-bottom: 15px;
+            padding: 17px;
+            border: 1px solid #252932;
+            border-radius: 17px;
+            background: #11141b;
+        }
+
+        .card-title {
+            margin-bottom: 14px;
+        }
+
+        .card-title h3 {
+            font-size: 14px;
+        }
+
+        .card-title p {
+            margin-top: 5px;
+            color: #858b98;
+            font-size: 9px;
+        }
+
+        .summary {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .summary-box {
+            padding: 14px;
+            border-radius: 13px;
+            background: #0b0e14;
+            border: 1px solid #282c36;
+        }
+
+        .summary-box span {
+            color: #858b98;
+            font-size: 9px;
+        }
+
+        .summary-box strong {
+            display: block;
+            margin-top: 7px;
+            font-size: 14px;
+        }
+
+        .income {
+            color: #39d98a;
+        }
+
+        .expense {
+            color: #ff4665;
+        }
+
+        .balance {
+            color: #ffffff;
+        }
+
+        .field {
+            margin-bottom: 13px;
+        }
+
+        .field label {
+            display: block;
+            margin-bottom: 6px;
+            color: #b8bdc7;
+            font-size: 10px;
+        }
+
+        .field input,
+        .field select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #2a2e38;
+            border-radius: 10px;
+            outline: none;
+            background: #090b10;
+            color: white;
+            font-size: 11px;
+        }
+
+        .field input:focus,
+        .field select:focus {
+            border-color: #ff294d;
+        }
+
+        .type-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 7px;
+        }
+
+        .type-button {
+            padding: 11px 5px;
+            border: 1px solid #30343e;
+            border-radius: 9px;
+            background: #0b0e14;
+            color: #9298a5;
+            font-size: 9px;
+            cursor: pointer;
+        }
+
+        .type-button.active {
+            border-color: #ff294d;
+            background: #2b0b13;
+            color: #ff5575;
+        }
+
+        .save-button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #ff1744, #a30022);
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .search {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #2a2e38;
+            border-radius: 10px;
+            outline: none;
+            background: #090b10;
+            color: white;
+            font-size: 10px;
+        }
+
+        .filter-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .filter-row select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #2a2e38;
+            border-radius: 9px;
+            background: #090b10;
+            color: white;
+            font-size: 9px;
+        }
+
+        .transaction {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 13px 0;
+            border-bottom: 1px solid #242832;
+        }
+
+        .transaction:last-child {
+            border-bottom: none;
+        }
+
+        .transaction-icon {
+            width: 38px;
+            height: 38px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 11px;
+            background: #1c2029;
+            font-size: 17px;
+        }
+
+        .transaction-info {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .transaction-info strong {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: 11px;
+        }
+
+        .transaction-info small {
+            display: block;
+            margin-top: 4px;
+            color: #858b98;
+            font-size: 8px;
+        }
+
+        .transaction-right {
+            text-align: right;
+        }
+
+        .transaction-amount {
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .transaction-amount.income {
+            color: #39d98a;
+        }
+
+        .transaction-amount.expense {
+            color: #ff4665;
+        }
+.edit-button {
+    margin-top: 5px;
+    margin-right: 4px;
+    padding: 4px 7px;
+    border: 1px solid #30343e;
+    border-radius: 6px;
+    background: #171a22;
+    color: #ffffff;
+    font-size: 7px;
+    cursor: pointer;
+}
+
+.edit-button:hover {
+    border-color: #ff3658;
+    color: #ff5575;
+}
+        .delete-button {
+            margin-top: 5px;
+            padding: 4px 7px;
+            border: 1px solid #3a2027;
+            border-radius: 6px;
+            background: #180d11;
+            color: #ff5575;
+            font-size: 7px;
+            cursor: pointer;
+        }.edit-button {
+    margin-top: 5px;
+    margin-right: 4px;
+    padding: 4px 7px;
+    border: 1px solid #303b4d;
+    border-radius: 6px;
+    background: #101722;
+    color: #8fb8ff;
+    font-size: 7px;
+    cursor: pointer;
+}
+
+        .empty {
+            padding: 20px 5px;
+            color: #858b98;
+            text-align: center;
+            font-size: 10px;
+        }
+
+        #message {
+            min-height: 25px;
+            color: #ff5575;
+            text-align: center;
+            font-size: 10px;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            left: 50%;
+            bottom: 0;
+            z-index: 50;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 650px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            padding: 9px 5px;
+            border-top: 1px solid #272b35;
+            background: #0e1118;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #858b98;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .nav-item small {
+            font-size: 8px;
+        }
+
+        .nav-item.active {
+            color: #ff3658;
+        }
+
+        @media (max-width: 380px) {
+
+            .summary {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<div class="app">
+
+    <header>
+
+        <div class="brand">
+
+            <div class="logo">
+                M
+            </div>
+
+            <div>
+                <h1>Transactions</h1>
+                <p>Track every movement of your money</p>
+            </div>
+
+        </div>
+
+        <a href="index.html" class="back">
+            ←
+        </a>
+
+    </header>
+
+
+    <main>
+
+        <section class="intro">
+
+            <small>
+                FINANCIAL RECORDS
+            </small>
+
+            <h2>
+                Transactions
+            </h2>
+
+            <p>
+                Record income, expenses and transfers
+                and keep your financial history organized.
+            </p>
+
+        </section>
+
+
+        <!-- SUMMARY -->
+
+        <section class="card">
+
+            <div class="card-title">
+
+                <h3>
+                    Financial Summary
+                </h3>
+
+                <p>
+                    Your current transaction totals
+                </p>
+
+            </div>
+
+
+            <div class="summary">
+
+                <div class="summary-box">
+
+                    <span>
+                        Balance
+                    </span>
+
+                    <strong
+                        id="balance"
+                        class="balance">
+                        KSh 0
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-box">
+
+                    <span>
+                        Income
+                    </span>
+
+                    <strong
+                        id="income"
+                        class="income">
+                        KSh 0
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-box">
+
+                    <span>
+                        Expenses
+                    </span>
+
+                    <strong
+                        id="expenses"
+                        class="expense">
+                        KSh 0
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-box">
+
+                    <span>
+                        Transactions
+                    </span>
+
+                    <strong id="transactionCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ADD TRANSACTION -->
+
+        <section class="card">
+
+            <div class="card-title">
+
+                <h3>
+                    Add Transaction
+                </h3>
+
+                <p>
+                    Record a new financial transaction
+                </p>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Transaction Type
+                </label>
+
+
+                <div class="type-buttons">
+
+                    <button
+                        type="button"
+                        class="type-button active"
+                        data-type="income">
+
+                        + Income
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="type-button"
+                        data-type="expense">
+
+                        - Expense
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="type-button"
+                        data-type="transfer">
+
+                        ↔ Transfer
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Amount
+                </label>
+
+                <input
+                    type="number"
+                    id="amount"
+                    placeholder="Enter amount"
+                    min="0"
+                    step="0.01">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Description
+                </label>
+
+                <input
+                    type="text"
+                    id="description"
+                    placeholder="Example: Salary, food, rent...">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Category
+                </label>
+
+                <select id="category">
+
+                    <option value="Salary">
+                        Salary
+                    </option>
+
+                    <option value="Business">
+                        Business
+                    </option>
+
+                    <option value="Food">
+                        Food
+                    </option>
+
+                    <option value="Transport">
+                        Transport
+                    </option>
+
+                    <option value="Bills">
+                        Bills
+                    </option>
+
+                    <option value="Shopping">
+                        Shopping
+                    </option>
+
+                    <option value="Education">
+                        Education
+                    </option>
+
+                    <option value="Health">
+                        Health
+                    </option>
+
+                    <option value="Savings">
+                        Savings
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Date
+                </label>
+
+                <input
+                    type="date"
+                    id="date">
+
+            </div>
+
+
+            <button
+                type="button"
+                class="save-button"
+                id="saveTransaction">
+
+                SAVE TRANSACTION
+
+            </button>
+
+        </section>
+
+
+        <!-- SEARCH -->
+
+        <section class="card">
+
+            <div class="card-title">
+
+                <h3>
+                    Transaction History
+                </h3>
+
+                <p>
+                    Search and filter your records
+                </p>
+
+            </div>
+
+
+            <input
+                type="search"
+                id="search"
+                class="search"
+                placeholder="Search transactions...">
+
+
+            <div class="filter-row">
+
+                <select id="typeFilter">
+
+                    <option value="all">
+                        All Types
+                    </option>
+
+                    <option value="income">
+                        Income
+                    </option>
+
+                    <option value="expense">
+                        Expenses
+                    </option>
+
+                    <option value="transfer">
+                        Transfers
+                    </option>
+
+                </select>
+
+
+                <select id="categoryFilter">
+
+                    <option value="all">
+                        All Categories
+                    </option>
+
+                    <option value="Salary">
+                        Salary
+                    </option>
+
+                    <option value="Business">
+                        Business
+                    </option>
+
+                    <option value="Food">
+                        Food
+                    </option>
+
+                    <option value="Transport">
+                        Transport
+                    </option>
+
+                    <option value="Bills">
+                        Bills
+                    </option>
+
+                    <option value="Shopping">
+                        Shopping
+                    </option>
+
+                    <option value="Education">
+                        Education
+                    </option>
+
+                    <option value="Health">
+                        Health
+                    </option>
+
+                    <option value="Savings">
+                        Savings
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div id="transactionList">
+
+                <div class="empty">
+                    No transactions recorded yet.
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <div id="message"></div>
+
+    </main>
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="bottom-nav">
+
+        <a href="index.html" class="nav-item">
+
+            <span>🏠</span>
+
+            <small>
+                Home
+            </small>
+
+        </a>
+
+
+        <a
+            href="transactions.html"
+            class="nav-item active">
+
+            <span>🧾</span>
+
+            <small>
+                Transactions
+            </small>
+
+        </a>
+
+
+        <a href="budget.html" class="nav-item">
+
+            <span>📊</span>
+
+            <small>
+                Budget
+            </small>
+
+        </a>
+
+
+        <a href="business.html" class="nav-item">
+
+            <span>💼</span>
+
+            <small>
+                Business
+            </small>
+
+        </a>
+
+
+        <a href="profile.html" class="nav-item">
+
+            <span>👤</span>
+
+            <small>
+                Profile
+            </small>
+
+        </a>
+
+    </nav>
+
+</div>
+
+
+<script src="transactions.js"></script>
+
+</body>
+
+</html>

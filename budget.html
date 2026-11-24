@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#090b10">
+
+    <title>M-Tracker - Budget</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #090b10;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            padding-bottom: 90px;
+        }
+
+        .app {
+            width: 100%;
+            max-width: 650px;
+            margin: auto;
+        }
+
+        /* HEADER */
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px;
+            background: #0e1118;
+            border-bottom: 1px solid #242832;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 13px;
+            background: linear-gradient(135deg, #ff1744, #9b001f);
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .brand h1 {
+            font-size: 17px;
+        }
+
+        .brand p {
+            margin-top: 4px;
+            color: #888e9b;
+            font-size: 9px;
+        }
+
+        .back {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: #191c24;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        /* MAIN */
+
+        main {
+            padding: 18px;
+        }
+
+        .intro {
+            margin-bottom: 18px;
+        }
+
+        .intro small {
+            color: #ff3658;
+            font-size: 9px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .intro h2 {
+            margin-top: 8px;
+            font-size: 27px;
+        }
+
+        .intro p {
+            margin-top: 7px;
+            color: #8b919e;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        /* CARDS */
+
+        .card {
+            margin-bottom: 15px;
+            padding: 17px;
+            border: 1px solid #252932;
+            border-radius: 17px;
+            background: #11141b;
+        }
+
+        .card-title {
+            margin-bottom: 14px;
+        }
+
+        .card-title h3 {
+            font-size: 14px;
+        }
+
+        .card-title p {
+            margin-top: 5px;
+            color: #858b98;
+            font-size: 9px;
+        }
+
+        /* TOTAL */
+
+        .total-box {
+            padding: 20px;
+            border: 1px solid #461722;
+            border-radius: 15px;
+            background: #1b0b10;
+        }
+
+        .total-box span {
+            color: #9298a5;
+            font-size: 10px;
+        }
+
+        .total-box strong {
+            display: block;
+            margin-top: 8px;
+            font-size: 27px;
+        }
+
+        .total-box small {
+            display: block;
+            margin-top: 5px;
+            color: #858b98;
+            font-size: 9px;
+        }
+
+        /* FORM */
+
+        .field {
+            margin-bottom: 13px;
+        }
+
+        .field label {
+            display: block;
+            margin-bottom: 6px;
+            color: #b8bdc7;
+            font-size: 10px;
+        }
+
+        .field input,
+        .field select {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #2a2e38;
+            border-radius: 10px;
+            outline: none;
+            background: #090b10;
+            color: #ffffff;
+            font-size: 11px;
+        }
+
+        .field input:focus,
+        .field select:focus {
+            border-color: #ff294d;
+        }
+
+        .save-button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #ff1744, #a40022);
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        /* SUMMARY */
+
+        .summary {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .summary-box {
+            padding: 14px;
+            border: 1px solid #272b35;
+            border-radius: 13px;
+            background: #0c0f15;
+        }
+
+        .summary-box span {
+            color: #858b98;
+            font-size: 9px;
+        }
+
+        .summary-box strong {
+            display: block;
+            margin-top: 7px;
+            font-size: 14px;
+        }
+
+        /* PROGRESS */
+
+        .progress-background {
+            width: 100%;
+            height: 11px;
+            overflow: hidden;
+            border-radius: 20px;
+            background: #292d37;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            border-radius: 20px;
+            background: linear-gradient(90deg, #ff1744, #ff5575);
+            transition: width 0.3s;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            color: #858b98;
+            font-size: 9px;
+        }
+
+        /* CATEGORIES */
+
+        .category {
+            margin-bottom: 10px;
+            padding: 13px;
+            border: 1px solid #272b35;
+            border-radius: 12px;
+            background: #0c0f15;
+        }
+
+        .category:last-child {
+            margin-bottom: 0;
+        }
+
+        .category-top {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .category-name {
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .category-money {
+            color: #ff5575;
+            font-size: 10px;
+        }
+
+        .category-background {
+            height: 7px;
+            margin-top: 9px;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #292d37;
+        }
+
+        .category-progress {
+            width: 0%;
+            height: 100%;
+            border-radius: 10px;
+            background: #ff294d;
+        }
+
+        .category-bottom {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 7px;
+            color: #858b98;
+            font-size: 8px;
+        }
+
+        .empty {
+            padding: 15px;
+            color: #858b98;
+            text-align: center;
+            font-size: 10px;
+        }
+
+        /* MESSAGE */
+
+        #message {
+            min-height: 25px;
+            color: #ff5575;
+            text-align: center;
+            font-size: 10px;
+        }
+
+        /* BOTTOM NAVIGATION */
+
+        .bottom-nav {
+            position: fixed;
+            left: 50%;
+            bottom: 0;
+            z-index: 50;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 650px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            padding: 9px 5px;
+            border-top: 1px solid #272b35;
+            background: #0e1118;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #858b98;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .nav-item small {
+            font-size: 8px;
+        }
+
+        .nav-item.active {
+            color: #ff3658;
+        }
+
+        @media (max-width: 380px) {
+
+            .summary {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="brand">
+
+            <div class="logo">
+                M
+            </div>
+
+            <div>
+
+                <h1>
+                    Budget
+                </h1>
+
+                <p>
+                    Plan and control your money
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <a href="index.html" class="back">
+            ←
+        </a>
+
+    </header>
+
+
+    <main>
+
+
+        <!-- INTRO -->
+
+        <section class="intro">
+
+            <small>
+                MONEY MANAGEMENT
+            </small>
+
+            <h2>
+                My Budget
+            </h2>
+
+            <p>
+                Set spending limits and keep track
+                of where your money goes.
+            </p>
+
+        </section>
+
+
+        <!-- TOTAL BUDGET -->
+
+        <section class="card">
+
+            <div class="total-box">
+
+                <span>
+                    Total Budget
+                </span>
+
+                <strong id="totalBudget">
+                    KSh 0
+                </strong>
+
+                <small id="budgetPeriod">
+                    Monthly budget
+                </small>
+
+            </div>
+
+        </section>
+
+
+        <!-- CREATE BUDGET -->
+
+        <section class="card">
+
+            <div class="card-title">
+
+                <h3>
+                    Create Budget
+                </h3>
+
+                <p>
+                    Set your spending limit
+                </p>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Budget Amount
+                </label>
+
+                <input
+                    type="number"
+                    id="budgetAmount"
+                    placeholder="Enter amount"
+                    min="0"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Budget Period
+                </label>
+
+                <select id="budgetPeriodInput">
+
+                    <option value="weekly">
+                        Weekly
+                    </option>
+
+                    <option value="monthly" selected>
+                        Monthly
+                    </option>
+
+                    <option value="yearly">
+                        Yearly
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                class="save-button"
+                id="saveBudget"
+                type="button">
+
+                SAVE BUDGET
+
+            </button>
+
+        </section>
+
+
+        <!-- SUMMARY -->
+
+        <section class="card">
+
+            <div class="card-title">
+
+                <h3>
+                    Spending Summary
+                </h3>
+
+                <p>
+                    Your current budget performance
+                </p>
+
+            </div>
+
+
+            <div class="summary">
+
+                <div class="summary-box">
+
+                    <span>
+                        Budget
+                    </span>
+
+                    <strong id="summaryBudget">
+                        KSh 0
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-box">
+
+                    <span>
+                        Spent
+                    </span>
+
+                    <strong id="summarySpent">
+                        KSh 0
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-box">
+
+                    <span>
+                        Remaining
+                    </span>
+
+                    <strong id="summaryRemaining">
+                        KSh 0
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-box">
+
+                    <span>
+                        Used
+                    </span>
+
+                    <strong id="summaryPercent">
+                        0%
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PROGRESS -->
+
+        <section class="card">
+
+            <div class="card-title">
+
+                <h3>
+                    Budget Progress
+                </h3>
+
+                <p>
+                    How much of your budget has been used
+                </p>
+
+            </div>
+
+
+            <div class="progress-background">
+
+                <div
+                    class="progress-bar"
+                    id="progressBar">
+                </div>
+
+            </div>
+
+
+            <div class="progress-info">
+
+                <span id="progressSpent">
+                    KSh 0 spent
+                </span>
+
+                <span id="progressBudget">
+                    KSh 0 budget
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- CATEGORIES -->
+
+        <section class="card">
+
+            <div class="card-title">
+
+                <h3>
+                    Spending Categories
+                </h3>
+
+                <p>
+                    See where your money is going
+                </p>
+
+            </div>
+
+
+            <div id="categoryList">
+
+                <div class="empty">
+                    No expenses recorded yet.
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <div id="message"></div>
+
+
+    </main>
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="bottom-nav">
+
+        <a href="index.html" class="nav-item">
+
+            <span>
+                🏠
+            </span>
+
+            <small>
+                Home
+            </small>
+
+        </a>
+
+
+        <a href="transactions.html" class="nav-item">
+
+            <span>
+                🧾
+            </span>
+
+            <small>
+                Transactions
+            </small>
+
+        </a>
+
+
+        <a href="budget.html" class="nav-item active">
+
+            <span>
+                📊
+            </span>
+
+            <small>
+                Budget
+            </small>
+
+        </a>
+
+
+        <a href="business.html" class="nav-item">
+
+            <span>
+                💼
+            </span>
+
+            <small>
+                Business
+            </small>
+
+        </a>
+
+
+        <a href="profile.html" class="nav-item">
+
+            <span>
+                👤
+            </span>
+
+            <small>
+                Profile
+            </small>
+
+        </a>
+
+    </nav>
+
+
+</div>
+
+
+<script src="budget.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color"
+          content="#080a0f">
+
+    <title>M-Tracker — Money</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- TOP HEADER -->
+    <header class="top-header">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                M
+            </div>
+
+            <div class="brand-info">
+                <h1>Money Center</h1>
+                <p>Track every movement of your money</p>
+            </div>
+
+        </div>
+
+        <button
+            class="notification-button"
+            type="button"
+            aria-label="Notifications">
+            🔔
+        </button>
+
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- PAGE INTRO -->
+        <section class="welcome-section">
+
+            <p class="welcome-label">
+                FINANCIAL CONTROL
+            </p>
+
+            <h2>
+                Your Money
+            </h2>
+
+            <p>
+                Record, organize and understand
+                every financial transaction.
+            </p>
+
+        </section>
+
+
+        <!-- BALANCE -->
+        <section class="balance-card">
+
+            <div class="balance-header">
+
+                <span>
+                    Current Balance
+                </span>
+
+                <button
+                    id="moneyBalanceVisibility"
+                    type="button"
+                    aria-label="Hide balance">
+                    👁️
+                </button>
+
+            </div>
+
+            <h2 id="moneyBalance">
+                $0.00
+            </h2>
+
+            <p>
+                Income − Expenses − Savings
+            </p>
+
+        </section>
+
+
+        <!-- MONEY SUMMARY -->
+        <section class="summary-section">
+
+            <div class="summary-card income">
+
+                <div class="summary-icon">
+                    ↗
+                </div>
+
+                <div>
+                    <span>Income</span>
+
+                    <strong id="moneyIncome">
+                        $0.00
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="summary-card expenses">
+
+                <div class="summary-icon">
+                    ↘
+                </div>
+
+                <div>
+                    <span>Expenses</span>
+
+                    <strong id="moneyExpenses">
+                        $0.00
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="summary-card savings">
+
+                <div class="summary-icon">
+                    $
+                </div>
+
+                <div>
+                    <span>Savings</span>
+
+                    <strong id="moneySavings">
+                        $0.00
+                    </strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ADD TRANSACTION -->
+        <section class="dashboard-section">
+
+            <div class="section-title">
+
+                <div>
+                    <h3>
+                        Add Transaction
+                    </h3>
+
+                    <p>
+                        Record where your money came from
+                        or where it went.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="quick-actions">
+
+                <a
+                    href="transactions.html?type=income"
+                    class="quick-action">
+
+                    <span class="action-icon">
+                        +
+                    </span>
+
+                    <strong>
+                        Income
+                    </strong>
+
+                </a>
+
+
+                <a
+                    href="transactions.html?type=expense"
+                    class="quick-action">
+
+                    <span class="action-icon">
+                        −
+                    </span>
+
+                    <strong>
+                        Expense
+                    </strong>
+
+                </a>
+
+
+                <a
+                    href="transactions.html?type=savings"
+                    class="quick-action">
+
+                    <span class="action-icon">
+                        💰
+                    </span>
+
+                    <strong>
+                        Savings
+                    </strong>
+
+                </a>
+
+
+                <a
+                    href="transactions.html?type=transfer"
+                    class="quick-action">
+
+                    <span class="action-icon">
+                        ↔
+                    </span>
+
+                    <strong>
+                        Transfer
+                    </strong>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- SEARCH -->
+        <section class="dashboard-section">
+
+            <div class="section-title">
+
+                <div>
+                    <h3>
+                        Find a Transaction
+                    </h3>
+
+                    <p>
+                        Search your financial records.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="search-box">
+
+                <span>
+                    🔎
+                </span>
+
+                <input
+                    type="search"
+                    id="transactionSearch"
+                    placeholder="Search transactions..."
+                    autocomplete="off">
+
+            </div>
+
+        </section>
+
+
+        <!-- FILTERS -->
+        <section class="dashboard-section">
+
+            <div class="section-title">
+
+                <div>
+                    <h3>
+                        Transaction History
+                    </h3>
+
+                    <p>
+                        Your complete financial activity.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="filter-row">
+
+                <button
+                    class="filter-button active"
+                    data-filter="all"
+                    type="button">
+                    All
+                </button>
+
+                <button
+                    class="filter-button"
+                    data-filter="income"
+                    type="button">
+                    Income
+                </button>
+
+                <button
+                    class="filter-button"
+                    data-filter="expense"
+                    type="button">
+                    Expenses
+                </button>
+
+                <button
+                    class="filter-button"
+                    data-filter="savings"
+                    type="button">
+                    Savings
+                </button>
+
+            </div>
+
+
+            <div
+                id="moneyTransactions"
+                class="transaction-container">
+
+                <div class="empty-transactions">
+
+                    <div class="empty-icon">
+                        💳
+                    </div>
+
+                    <h4>
+                        No transactions yet
+                    </h4>
+
+                    <p>
+                        Your recorded transactions
+                        will appear here.
+                    </p>
+
+                    <a
+                        href="transactions.html"
+                        class="primary-button">
+                        + Add Transaction
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FINANCIAL TIP -->
+        <section class="dashboard-section">
+
+            <div class="insight-card">
+
+                <div class="insight-icon">
+                    💡
+                </div>
+
+                <div>
+
+                    <h4>
+                        M-Tracker Tip
+                    </h4>
+
+                    <p>
+                        Recording even small purchases
+                        helps you understand where your
+                        money is going.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- BOTTOM NAVIGATION -->
+    <nav class="bottom-navigation">
+
+        <a
+            href="index.html"
+            class="nav-item">
+
+            <span>🏠</span>
+            <small>Home</small>
+
+        </a>
+
+
+        <a
+            href="money.html"
+            class="nav-item active">
+
+            <span>💳</span>
+            <small>Money</small>
+
+        </a>
+
+
+        <a
+            href="business.html"
+            class="nav-item">
+
+            <span>📊</span>
+            <small>Business</small>
+
+        </a>
+
+
+        <a
+            href="assistant.html"
+            class="nav-item">
+
+            <span>✨</span>
+            <small>Assistant</small>
+
+        </a>
+
+
+        <a
+            href="profile.html"
+            class="nav-item">
+
+            <span>👤</span>
+            <small>Profile</small>
+
+        </a>
+
+    </nav>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>

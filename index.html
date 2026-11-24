@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color"
+          content="#090b10">
+
+    <title>M-Tracker - Dashboard</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #090b10;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            padding-bottom: 90px;
+        }
+
+        .app {
+            width: 100%;
+            max-width: 650px;
+            margin: auto;
+        }
+
+
+        /* HEADER */
+
+<img src="images/logo.jpg" alt="M-Tracker Logo">
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px;
+            background: #0e1118;
+            border-bottom: 1px solid #252932;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 13px;
+            background: linear-gradient(
+                135deg,
+                #ff1744,
+                #9d001f
+            );
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .brand h1 {
+            font-size: 17px;
+        }
+
+        .brand p {
+            margin-top: 4px;
+            color: #858b98;
+            font-size: 9px;
+        }
+
+
+        /* PROFILE BUTTON */
+
+        .profile-button {
+            width: 43px;
+            height: 43px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 1px solid #30343e;
+            border-radius: 50%;
+            background: #191c24;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .profile-button img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+
+        /* MAIN */
+
+        main {
+            padding: 18px;
+        }
+
+        .welcome {
+            margin-bottom: 18px;
+        }
+
+        .welcome small {
+            color: #ff3658;
+            font-size: 9px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .welcome h2 {
+            margin-top: 8px;
+            font-size: 26px;
+        }
+
+        .welcome p {
+            margin-top: 6px;
+            color: #858b98;
+            font-size: 10px;
+        }
+
+
+        /* BALANCE */
+
+        .balance-card {
+            margin-bottom: 15px;
+            padding: 20px;
+            border: 1px solid #4a1824;
+            border-radius: 18px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #210b12,
+                    #100c11
+                );
+        }
+
+        .balance-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .balance-label {
+            color: #a5aab5;
+            font-size: 10px;
+        }
+
+        .eye-button {
+            width: 34px;
+            height: 34px;
+            border: 1px solid #39232a;
+            border-radius: 9px;
+            background: #170d12;
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .balance {
+            margin-top: 10px;
+            font-size: 30px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .balance-note {
+            margin-top: 7px;
+            color: #858b98;
+            font-size: 9px;
+        }
+
+
+        /* SUMMARY */
+
+        .summary {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .summary-card {
+            padding: 15px;
+            border: 1px solid #272b35;
+            border-radius: 14px;
+            background: #11141b;
+        }
+
+        .summary-card span {
+            color: #858b98;
+            font-size: 9px;
+        }
+
+        .summary-card strong {
+            display: block;
+            margin-top: 7px;
+            font-size: 14px;
+        }
+
+        .income {
+            color: #38d98a;
+        }
+
+        .expense {
+            color: #ff4665;
+        }
+
+        .savings {
+            color: #ffca58;
+        }
+
+
+        /* CARD */
+
+        .card {
+            margin-bottom: 15px;
+            padding: 17px;
+            border: 1px solid #252932;
+            border-radius: 17px;
+            background: #11141b;
+        }
+
+        .card-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+
+        .card-title h3 {
+            font-size: 14px;
+        }
+
+        .view-all {
+            color: #ff4665;
+            text-decoration: none;
+            font-size: 9px;
+        }
+
+
+        /* BUDGET */
+
+        .budget-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .budget-row span {
+            color: #858b98;
+            font-size: 9px;
+        }
+
+        .budget-row strong {
+            font-size: 11px;
+        }
+
+        .progress-background {
+            width: 100%;
+            height: 10px;
+            overflow: hidden;
+            border-radius: 20px;
+            background: #292d37;
+        }
+
+        .progress {
+            width: 0%;
+            height: 100%;
+            border-radius: 20px;
+            background: linear-gradient(
+                90deg,
+                #ff1744,
+                #ff5575
+            );
+            transition: width 0.3s;
+        }
+
+        .budget-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            color: #858b98;
+            font-size: 8px;
+        }
+
+
+        /* QUICK ACTIONS */
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 9px;
+        }
+
+        .action {
+            padding: 14px;
+            border: 1px solid #2a2e38;
+            border-radius: 12px;
+            background: #0c0f15;
+            color: white;
+            text-decoration: none;
+        }
+
+        .action-icon {
+            font-size: 18px;
+        }
+
+        .action strong {
+            display: block;
+            margin-top: 7px;
+            font-size: 10px;
+        }
+
+        .action small {
+            display: block;
+            margin-top: 4px;
+            color: #858b98;
+            font-size: 8px;
+        }
+
+        .action.income-action {
+            border-color: #183b2c;
+        }
+
+        .action.expense-action {
+            border-color: #4a1824;
+        }
+
+
+        /* TRANSACTIONS */
+
+        .transaction {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 0;
+            border-bottom: 1px solid #252932;
+        }
+
+        .transaction:last-child {
+            border-bottom: none;
+        }
+
+        .transaction-icon {
+            width: 37px;
+            height: 37px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background: #1b1f28;
+            font-size: 16px;
+        }
+
+        .transaction-info {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .transaction-info strong {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: 10px;
+        }
+
+        .transaction-info small {
+            display: block;
+            margin-top: 4px;
+            color: #858b98;
+            font-size: 8px;
+        }
+
+        .transaction-amount {
+            font-size: 9px;
+            font-weight: bold;
+        }
+
+        .transaction-amount.income {
+            color: #38d98a;
+        }
+
+        .transaction-amount.expense {
+            color: #ff4665;
+        }
+
+        .empty {
+            padding: 15px;
+            color: #858b98;
+            text-align: center;
+            font-size: 9px;
+        }
+
+
+        /* ALERT */
+
+        .alert {
+            display: none;
+            margin-bottom: 15px;
+            padding: 13px;
+            border: 1px solid #5b202b;
+            border-radius: 12px;
+            background: #1c0c11;
+            color: #ff7087;
+            font-size: 9px;
+            line-height: 1.5;
+        }
+
+
+        /* BOTTOM NAVIGATION */
+
+        .bottom-nav {
+            position: fixed;
+            left: 50%;
+            bottom: 0;
+            z-index: 50;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 650px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            padding: 9px 5px;
+            border-top: 1px solid #272b35;
+            background: #0e1118;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #858b98;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .nav-item small {
+            font-size: 8px;
+        }
+
+        .nav-item.active {
+            color: #ff3658;
+        }
+
+
+        /* PROFILE IMAGE IN BOTTOM NAV */
+
+        .nav-profile-image {
+            width: 20px;
+            height: 20px;
+            overflow: hidden;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+
+        @media (max-width: 380px) {
+
+            .summary {
+                grid-template-columns: 1fr 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="brand">
+
+            <div class="logo">
+                M
+            </div>
+
+            <div>
+
+                <h1>
+                    M-Tracker
+                </h1>
+
+                <p>
+                    Your personal financial secretary
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROFILE BUTTON -->
+
+        <a
+            href="profile.html"
+            class="profile-button"
+            id="topProfile">
+
+            👤
+
+        </a>
+
+    </header>
+
+
+    <main>
+
+
+        <!-- WELCOME -->
+
+        <section class="welcome">
+
+            <small>
+                FINANCIAL COMMAND CENTER
+            </small>
+
+            <h2 id="welcomeTitle">
+                Dashboard
+            </h2>
+
+            <p id="welcomeMessage">
+                Everything about your money in one place.
+            </p>
+
+        </section>
+
+
+        <!-- BALANCE -->
+
+        <section class="balance-card">
+
+            <div class="balance-top">
+
+                <span class="balance-label">
+                    TOTAL BALANCE
+                </span>
+
+
+                <button
+                    type="button"
+                    class="eye-button"
+                    id="eyeButton">
+
+                    👁️
+
+                </button>
+
+            </div>
+
+
+            <div
+                class="balance"
+                id="balance">
+
+                KSh 0
+
+            </div>
+
+
+            <div
+                class="balance-note"
+                id="balanceNote">
+
+                Available balance
+
+            </div>
+
+        </section>
+
+
+        <!-- ALERT -->
+
+        <div
+            class="alert"
+            id="financialAlert">
+        </div>
+
+
+        <!-- SUMMARY -->
+
+        <section class="summary">
+
+
+            <div class="summary-card">
+
+                <span>
+                    TOTAL INCOME
+                </span>
+
+                <strong
+                    id="income"
+                    class="income">
+
+                    KSh 0
+
+                </strong>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <span>
+                    TOTAL EXPENSES
+                </span>
+
+                <strong
+                    id="expenses"
+                    class="expense">
+
+                    KSh 0
+
+                </strong>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <span>
+                    SAVINGS
+                </span>
+
+                <strong
+                    id="savings"
+                    class="savings">
+
+                    KSh 0
+
+                </strong>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <span>
+                    TRANSACTIONS
+                </span>
+
+                <strong id="transactionCount">
+
+                    0
+
+                </strong>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- QUICK ACTIONS -->
+
+        <section class="card">
+
+            <div class="card-title">
+
+                <h3>
+                    Quick Actions
+                </h3>
+
+            </div>
+
+
+            <div class="quick-actions">
+
+
+                <a
+                    href="transactions.html"
+                    class="action income-action">
+
+                    <div class="action-icon">
+                        ➕
+                    </div>
+
+                    <strong>
+                        Add Income
+                    </strong>
+
+                    <small>
+                        Record money received
+                    </small>
+
+                </a>
+
+
+                <a
+                    href="transactions.html"
+                    class="action expense-action">
+
+                    <div class="action-icon">
+                        ➖
+                    </div>
+
+                    <strong>
+                        Add Expense
+                    </strong>
+
+                    <small>
+                        Record money spent
+                    </small>
+
+                </a>
+
+
+                <a
+                    href="budget.html"
+                    class="action">
+
+                    <div class="action-icon">
+                        📊
+                    </div>
+
+                    <strong>
+                        Manage Budget
+                    </strong>
+
+                    <small>
+                        Control your spending
+                    </small>
+
+                </a>
+
+
+                <a
+                    href="transactions.html"
+                    class="action">
+
+                    <div class="action-icon">
+                        🧾
+                    </div>
+
+                    <strong>
+                        View Transactions
+                    </strong>
+
+                    <small>
+                        See your financial records
+                    </small>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- BUDGET -->
+
+        <section class="card">
+
+            <div class="card-title">
+
+                <h3>
+                    Budget Overview
+                </h3>
+
+                <a
+                    href="budget.html"
+                    class="view-all">
+
+                    Manage
+
+                </a>
+
+            </div>
+
+
+            <div class="budget-row">
+
+                <span>
+                    Budget
+                </span>
+
+                <strong id="budgetAmount">
+                    KSh 0
+                </strong>
+
+            </div>
+
+
+            <div class="progress-background">
+
+                <div
+                    class="progress"
+                    id="budgetProgress">
+                </div>
+
+            </div>
+
+
+            <div class="budget-info">
+
+                <span id="budgetSpent">
+                    KSh 0 spent
+                </span>
+
+                <span id="budgetRemaining">
+                    KSh 0 remaining
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- RECENT TRANSACTIONS -->
+
+        <section class="card">
+
+            <div class="card-title">
+
+                <h3>
+                    Recent Transactions
+                </h3>
+
+                <a
+                    href="transactions.html"
+                    class="view-all">
+
+                    View All
+
+                </a>
+
+            </div>
+
+
+            <div id="recentTransactions">
+
+                <div class="empty">
+                    No transactions yet.
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- BOTTOM NAVIGATION -->
+
+    <nav class="bottom-nav">
+
+
+        <a
+            href="index.html"
+            class="nav-item active">
+
+            <span>
+                🏠
+            </span>
+
+            <small>
+                Home
+            </small>
+
+        </a>
+
+
+        <a
+            href="transactions.html"
+            class="nav-item">
+
+            <span>
+                🧾
+            </span>
+
+            <small>
+                Transactions
+            </small>
+
+        </a>
+
+
+        <a
+            href="budget.html"
+            class="nav-item">
+
+            <span>
+                📊
+            </span>
+
+            <small>
+                Budget
+            </small>
+
+        </a>
+
+
+        <a
+            href="business.html"
+            class="nav-item">
+
+            <span>
+                💼
+            </span>
+
+            <small>
+                Business
+            </small>
+
+        </a>
+
+
+        <!-- PROFILE -->
+
+        <a
+            href="profile.html"
+            class="nav-item">
+
+            <span
+                class="nav-profile-image"
+                id="bottomProfile">
+
+                👤
+
+            </span>
+
+            <small>
+                Profile
+            </small>
+
+        </a>
+
+
+    </nav>
+
+
+</div>
+
+
+<!-- YOUR EXISTING DASHBOARD JAVASCRIPT -->
+
+<script src="dashboard.js"></script>
+
+
+<!-- PROFILE CONNECTION -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        loadDashboardProfile();
+
+    }
+);
+
+
+function loadDashboardProfile() {
+
+    var savedProfile =
+        localStorage.getItem(
+            "mtracker_profile"
+        );
+
+
+    if (!savedProfile) {
+
+        return;
+
+    }
+
+
+    try {
+
+        var profile =
+            JSON.parse(
+                savedProfile
+            );
+
+
+        var name =
+            profile.fullName || "";
+
+
+        var photo =
+            profile.photo || "";
+
+
+        /*
+         * Show user's name
+         */
+
+        if (name) {
+
+            document.getElementById(
+                "welcomeTitle"
+            ).textContent =
+                "Hello, " + name;
+
+        }
+
+
+        /*
+         * Change the top-right
+         * profile icon.
+         */
+
+        var topProfile =
+            document.getElementById(
+                "topProfile"
+            );
+
+
+        if (photo) {
+
+            topProfile.innerHTML =
+                "";
+
+
+            var topImage =
+                document.createElement(
+                    "img"
+                );
+
+
+            topImage.src =
+                photo;
+
+
+            topImage.alt =
+                "Profile";
+
+
+            topProfile.appendChild(
+                topImage
+            );
+
+        }
+
+
+        /*
+         * Change bottom
+         * profile icon.
+         */
+
+        var bottomProfile =
+            document.getElementById(
+                "bottomProfile"
+            );
+
+
+        if (photo) {
+
+            bottomProfile.innerHTML =
+                "";
+
+
+            var bottomImage =
+                document.createElement(
+                    "img"
+                );
+
+
+            bottomImage.src =
+                photo;
+
+
+            bottomImage.alt =
+                "Profile";
+
+
+bottomProfile.appendChild(
+    bottomImage
+);
+
+}
+
+}
+
+catch (error) {
+
+    console.log("Could not load profile.");
+
+}
+
+}

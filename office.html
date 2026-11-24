@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color"
+          content="#090b10">
+
+    <title>M-Tracker Office</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #090b10;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            padding-bottom: 30px;
+        }
+
+        .app {
+            width: 100%;
+            max-width: 650px;
+            margin: auto;
+        }
+
+        /* HEADER */
+
+        header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 17px;
+            background: #0e1118;
+            border-bottom: 1px solid #252932;
+        }
+
+        .back {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 11px;
+            background: #191c24;
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        .logo {
+            width: 43px;
+            height: 43px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: linear-gradient(
+                135deg,
+                #ff1744,
+                #9d001f
+            );
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        header h1 {
+            font-size: 17px;
+        }
+
+        header p {
+            margin-top: 4px;
+            color: #858b98;
+            font-size: 9px;
+        }
+
+        /* MAIN */
+
+        main {
+            padding: 18px;
+        }
+
+        .intro {
+            margin-bottom: 18px;
+        }
+
+        .intro small {
+            color: #ff3658;
+            font-size: 9px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .intro h2 {
+            margin-top: 8px;
+            font-size: 26px;
+        }
+
+        .intro p {
+            margin-top: 7px;
+            color: #858b98;
+            font-size: 10px;
+            line-height: 1.5;
+        }
+
+        /* SECRETARY CARD */
+
+        .secretary {
+            margin-bottom: 16px;
+            padding: 18px;
+            border: 1px solid #4b1b27;
+            border-radius: 18px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #210b12,
+                    #110c11
+                );
+        }
+
+        .secretary-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .secretary-icon {
+            width: 43px;
+            height: 43px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: #32101a;
+            font-size: 21px;
+        }
+
+        .secretary h3 {
+            font-size: 14px;
+        }
+
+        .secretary p {
+            margin-top: 5px;
+            color: #a7abb5;
+            font-size: 9px;
+            line-height: 1.5;
+        }
+
+        .secretary-status {
+            margin-top: 15px;
+            padding: 9px;
+            border-radius: 9px;
+            background: #140d11;
+            color: #ff667e;
+            font-size: 8px;
+        }
+
+        /* SECTION */
+
+        .section {
+            margin-bottom: 16px;
+            padding: 17px;
+            border: 1px solid #252932;
+            border-radius: 17px;
+            background: #11141b;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+
+        .section-title h3 {
+            font-size: 14px;
+        }
+
+        .section-title span {
+            color: #858b98;
+            font-size: 9px;
+        }
+
+        /* DOCUMENT GRID */
+
+        .document-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .document {
+            min-height: 115px;
+            padding: 14px;
+            border: 1px solid #2a2e38;
+            border-radius: 13px;
+            background: #0c0f15;
+            color: white;
+            text-decoration: none;
+            transition: 0.15s;
+        }
+
+        .document:active {
+            transform: scale(0.98);
+        }
+
+        .document-icon {
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background: #191d26;
+            font-size: 18px;
+        }
+
+        .document strong {
+            display: block;
+            margin-top: 9px;
+            font-size: 10px;
+        }
+
+        .document small {
+            display: block;
+            margin-top: 5px;
+            color: #858b98;
+            font-size: 8px;
+            line-height: 1.4;
+        }
+
+        /* QUICK TOOLS */
+
+        .tools {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 9px;
+        }
+
+        .tool {
+            padding: 13px;
+            border: 1px solid #292d36;
+            border-radius: 11px;
+            background: #0c0f15;
+            color: white;
+            text-decoration: none;
+        }
+
+        .tool-icon {
+            font-size: 17px;
+        }
+
+        .tool strong {
+            display: block;
+            margin-top: 7px;
+            font-size: 9px;
+        }
+
+        .tool small {
+            display: block;
+            margin-top: 4px;
+            color: #858b98;
+            font-size: 8px;
+        }
+
+        /* STATS */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .stat {
+            padding: 13px 8px;
+            text-align: center;
+            border: 1px solid #292d36;
+            border-radius: 11px;
+            background: #0c0f15;
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 16px;
+        }
+
+        .stat small {
+            display: block;
+            margin-top: 5px;
+            color: #858b98;
+            font-size: 7px;
+        }
+
+        /* SEARCH */
+
+        .search {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #30343e;
+            border-radius: 10px;
+            outline: none;
+            background: #090b10;
+            color: white;
+            font-size: 9px;
+        }
+
+        .search:focus {
+            border-color: #ff294d;
+        }
+
+        /* NOTICE */
+
+        .notice {
+            margin-top: 13px;
+            padding: 12px;
+            border: 1px solid #30252a;
+            border-radius: 10px;
+            background: #160d11;
+            color: #aeb3be;
+            font-size: 8px;
+            line-height: 1.6;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 380px) {
+
+            .document-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+    <!-- HEADER -->
+
+    <header>
+
+        <a
+            href="index.html"
+            class="back">
+
+            ←
+
+        </a>
+
+
+        <div class="logo">
+            M
+        </div>
+
+
+        <div>
+
+            <h1>
+                M-Tracker Office
+            </h1>
+
+            <p>
+                Your digital financial secretary
+            </p>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+
+        <!-- INTRO -->
+
+        <section class="intro">
+
+            <small>
+                OFFICE COMMAND CENTER
+            </small>
+
+            <h2>
+                Your Office
+            </h2>
+
+            <p>
+                Create, organize and manage your
+                financial documents and business records
+                from one place.
+            </p>
+
+        </section>
+
+
+        <!-- SECRETARY -->
+
+        <section class="secretary">
+
+            <div class="secretary-title">
+
+                <div class="secretary-icon">
+                    🤵
+                </div>
+
+                <div>
+
+                    <h3>
+                        M-Tracker Secretary
+                    </h3>
+
+                    <p>
+                        Your digital assistant for financial
+                        and office management.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="secretary-status">
+
+                ● Secretary system ready
+
+            </div>
+
+        </section>
+
+
+        <!-- DOCUMENTS -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <h3>
+                    📂 Documents
+                </h3>
+
+                <span>
+                    Office records
+                </span>
+
+            </div>
+
+
+            <div class="document-grid">
+
+
+                <a
+                    href="invoices.html"
+                    class="document">
+
+                    <div class="document-icon">
+                        🧾
+                    </div>
+
+                    <strong>
+                        Invoices
+                    </strong>
+
+                    <small>
+                        Create and manage invoices.
+                    </small>
+
+                </a>
+
+
+                <a
+                    href="bills.html"
+                    class="document">
+
+                    <div class="document-icon">
+                        💵
+                    </div>
+
+                    <strong>
+                        Bills
+                    </strong>
+
+                    <small>
+                        Track bills and payments.
+                    </small>
+
+                </a>
+
+
+                <a
+                    href="receipts.html"
+                    class="document">
+
+                    <div class="document-icon">
+                        🧾
+                    </div>
+
+                    <strong>
+                        Receipts
+                    </strong>
+
+                    <small>
+                        Record and organize receipts.
+                    </small>
+
+                </a>
+
+
+                <a
+                    href="cheques.html"
+                    class="document">
+
+                    <div class="document-icon">
+                        🏦
+                    </div>
+
+                    <strong>
+                        Cheques
+                    </strong>
+
+                    <small>
+                        Record cheque information.
+                    </small>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- FILE MANAGEMENT -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <h3>
+                    🗃️ File Management
+                </h3>
+
+                <span>
+                    Organize
+                </span>
+
+            </div>
+
+
+            <div class="document-grid">
+
+
+                <a
+                    href="files.html"
+                    class="document">
+
+                    <div class="document-icon">
+                        📁
+                    </div>
+
+                    <strong>
+                        Files & Folders
+                    </strong>
+
+                    <small>
+                        Organize your office records.
+                    </small>
+
+                </a>
+
+
+                <a
+                    href="records.html"
+                    class="document">
+
+                    <div class="document-icon">
+                        🗄️
+                    </div>
+
+                    <strong>
+                        Financial Records
+                    </strong>
+
+                    <small>
+                        Search and retrieve records.
+                    </small>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- QUICK TOOLS -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <h3>
+                    ⚡ Quick Tools
+                </h3>
+
+                <span>
+                    Productivity
+                </span>
+
+            </div>
+
+
+            <div class="tools">
+
+
+                <a
+                    href="invoices.html"
+                    class="tool">
+
+                    <div class="tool-icon">
+                        ➕
+                    </div>
+
+                    <strong>
+                        New Invoice
+                    </strong>
+
+                    <small>
+                        Create an invoice
+                    </small>
+
+                </a>
+
+
+                <a
+                    href="receipts.html"
+                    class="tool">
+
+                    <div class="tool-icon">
+                        🧾
+                    </div>
+
+                    <strong>
+                        New Receipt
+                    </strong>
+
+                    <small>
+                        Record a receipt
+                    </small>
+
+                </a>
+
+
+                <a
+                    href="files.html"
+                    class="tool">
+
+                    <div class="tool-icon">
+                        📁
+                    </div>
+
+                    <strong>
+                        New Folder
+                    </strong>
+
+                    <small>
+                        Organize records
+                    </small>
+
+                </a>
+
+
+                <a
+                    href="records.html"
+                    class="tool">
+
+                    <div class="tool-icon">
+                        🔍
+                    </div>
+
+                    <strong>
+                        Search Records
+                    </strong>
+
+                    <small>
+                        Find a document
+                    </small>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- OFFICE STATISTICS -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <h3>
+                    📊 Office Overview
+                </h3>
+
+                <span>
+                    Current records
+                </span>
+
+            </div>
+
+
+            <div class="stats">
+
+
+                <div class="stat">
+
+                    <strong id="invoiceCount">
+                        0
+                    </strong>
+
+                    <small>
+                        INVOICES
+                    </small>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <strong id="billCount">
+                        0
+                    </strong>
+
+                    <small>
+                        BILLS
+                    </small>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <strong id="receiptCount">
+                        0
+                    </strong>
+
+                    <small>
+                        RECEIPTS
+                    </small>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- SEARCH -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <h3>
+                    🔎 Search Office
+                </h3>
+
+            </div>
+
+
+            <input
+                type="search"
+                id="officeSearch"
+                class="search"
+                placeholder="Search invoices, bills, receipts...">
+
+
+            <div class="notice">
+
+                Search will eventually scan your
+                M-Tracker office records and allow
+                you to retrieve documents quickly.
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<script src="office.js"></script>
+
+</body>
+
+</html>
